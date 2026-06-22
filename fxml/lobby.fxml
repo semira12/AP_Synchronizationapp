@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.syncstream.gui.LobbyController"
+            style="-fx-background-color: #1a1a2e;">
+
+    <!-- TOP BAR -->
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="20"
+              style="-fx-background-color: #16213e; -fx-padding: 12 20 12 20;">
+            <Label text="🎬 SyncStream" style="-fx-font-size: 20; -fx-text-fill: #e94560; -fx-font-weight: bold;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="welcomeLabel" style="-fx-text-fill: #cccccc;"/>
+            <Button text="Logout" onAction="#onLogout"
+                    style="-fx-background-color: transparent; -fx-text-fill: #e94560; -fx-cursor: hand;"/>
+        </HBox>
+    </top>
+
+    <!-- CENTER: Create + Join panels -->
+    <center>
+        <HBox spacing="20" alignment="TOP_CENTER">
+            <padding><Insets top="30" right="20" bottom="20" left="20"/></padding>
+
+            <!-- CREATE ROOM PANEL -->
+            <VBox spacing="12" prefWidth="300"
+                  style="-fx-background-color: #16213e; -fx-padding: 20; -fx-background-radius: 8;">
+                <Label text="➕ Create a Room" style="-fx-font-size: 16; -fx-text-fill: #e94560; -fx-font-weight: bold;"/>
+                <Label text="Room Name:" style="-fx-text-fill: #cccccc;"/>
+                <TextField fx:id="roomNameField" promptText="Movie Night..."
+                           style="-fx-background-color: #0f3460; -fx-text-fill: white;"/>
+                <Label text="Video File:" style="-fx-text-fill: #cccccc;"/>
+                <HBox spacing="8">
+                    <TextField fx:id="videoPathField" promptText="/path/to/video.mp4"
+                               style="-fx-background-color: #0f3460; -fx-text-fill: white;" HBox.hgrow="ALWAYS"/>
+                    <Button text="Browse" onAction="#onBrowseVideo"
+                            style="-fx-background-color: #333355; -fx-text-fill: white; -fx-cursor: hand;"/>
+                </HBox>
+                <Button text="🚀 Create Room" onAction="#onCreateRoom" prefWidth="Infinity"
+                        style="-fx-background-color: #e94560; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand;"/>
+            </VBox>
+
+            <!-- JOIN ROOM PANEL -->
+            <VBox spacing="12" prefWidth="300"
+                  style="-fx-background-color: #16213e; -fx-padding: 20; -fx-background-radius: 8;">
+                <Label text="🔗 Join a Room" style="-fx-font-size: 16; -fx-text-fill: #e94560; -fx-font-weight: bold;"/>
+                <Label text="Room Code:" style="-fx-text-fill: #cccccc;"/>
+                <TextField fx:id="roomCodeField" promptText="e.g. ABC123"
+                           style="-fx-background-color: #0f3460; -fx-text-fill: white; -fx-font-size: 16; -fx-font-weight: bold;"/>
+                <Button text="🎬 Join Room" onAction="#onJoinRoom" prefWidth="Infinity"
+                        style="-fx-background-color: #0f3460; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand; -fx-border-color: #e94560;"/>
+
+                <Separator style="-fx-background-color: #333355;"/>
+
+                <!-- Active Rooms List -->
+                <Label text="📋 Active Rooms:" style="-fx-text-fill: #cccccc;"/>
+                <ListView fx:id="activeRoomsList" prefHeight="140"
+                          style="-fx-background-color: #0f3460; -fx-text-fill: white;"/>
+                <Button text="🔄 Refresh" onAction="#onRefreshRooms"
+                        style="-fx-background-color: #333355; -fx-text-fill: white; -fx-cursor: hand;"/>
+            </VBox>
+        </HBox>
+    </center>
+
+    <!-- BOTTOM STATUS BAR -->
+    <bottom>
+        <HBox style="-fx-background-color: #0f3460; -fx-padding: 8 20;">
+            <Label fx:id="statusLabel" style="-fx-text-fill: #e94560;"/>
+        </HBox>
+    </bottom>
+</BorderPane>
